@@ -1,7 +1,14 @@
-import React from "react";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import { LuArmchair } from "react-icons/lu";
+import { VscCode } from "react-icons/vsc";
 
-const Logo = () => {
-  return <div>Logo</div>;
-};
+function Logo() {
+  return (
+    <Button size="icon" nativeButton={false} render={<Link href="/" />}>
+      <VscCode className="w-6 h-6" />
+    </Button>
+  );
+}
 
 export default Logo;
