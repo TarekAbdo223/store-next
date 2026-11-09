@@ -1,6 +1,7 @@
+import { Product } from "@prisma/client";
 import React from "react";
 
-function ProductsGrid() {
+function ProductsGrid({ products }: { products: Product[] }) {
   return <div>ProductsGrid</div>;
 }
 
