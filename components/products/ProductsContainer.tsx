@@ -13,7 +13,7 @@ async function ProductsContainer({
   layout: string;
   search: string;
 }) {
-  const products = await fetchAllProducts();
+  const products = await fetchAllProducts({ search });
   const totalProducts = products.length;
   const searchTerm = search ? `&search=${search}` : "";
   return (
@@ -28,20 +28,18 @@ async function ProductsContainer({
             <Button
               variant={layout === "grid" ? "default" : "ghost"}
               size="icon"
-              asChild
+              nativeButton={false}
+              render={<Link href={`/products?layout=grid${searchTerm}`} />}
             >
-              <Link href={`/products?layout=grid${searchTerm}`}>
-                <LuLayoutGrid />
-              </Link>
+              <LuLayoutGrid />
             </Button>
             <Button
               variant={layout === "list" ? "default" : "ghost"}
               size="icon"
-              asChild
+              nativeButton={false}
+              render={<Link href={`/products?layout=list${searchTerm}`} />}
             >
-              <Link href={`/products?layout=list${searchTerm}`}>
-                <LuList />
-              </Link>
+              <LuList />
             </Button>
           </div>
         </div>
