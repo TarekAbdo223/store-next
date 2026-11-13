@@ -18,8 +18,11 @@ function Hero() {
         <Button
           size="lg"
           className="mt-10"
-          render={<Link href="/products">Our Products</Link>}
-        ></Button>
+          nativeButton={false}
+          render={<Link href="/products" />}
+        >
+          Our Products
+        </Button>
       </div>
       <HeroCarousel />
     </section>
