@@ -12,16 +12,26 @@ import { links } from "@/utils/links";
 import UserIcon from "./UserIcon";
 import SignOutLink from "./SignOutLink";
 import { SignInButton, SignUpButton, Show } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { Suspense } from "react";
 
-function LinksDropdown() {
+async function LinksDropdown() {
+  const { userId } = await auth();
+  const isAdmin = userId === process.env.ADMIN_USER_ID;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        render={<Button variant="outline" className="flex gap-4 max-w-[100px]" />}
+        render={
+          <Button variant="outline" className="flex gap-4 max-w-[100px]" />
+        }
       >
         <LuAlignLeft className="w-6 h-6" />
-        <Suspense fallback={<LuUser className="w-6 h-6 bg-primary rounded-full text-white" />}>
+        <Suspense
+          fallback={
+            <LuUser className="w-6 h-6 bg-primary rounded-full text-white" />
+          }
+        >
           <UserIcon />
         </Suspense>
       </DropdownMenuTrigger>
@@ -41,6 +51,7 @@ function LinksDropdown() {
         </Show>
         <Show when="signed-in">
           {links.map((link) => {
+            if (link.label === "dashboard" && !isAdmin) return null;
             return (
               <DropdownMenuItem key={link.href}>
                 <Link href={link.href} className="capitalize w-full">
