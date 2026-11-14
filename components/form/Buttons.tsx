@@ -1,6 +1,6 @@
 "use client";
 
-import { ReloadIcon } from "@radix-ui/react-icons";
+import { Loader2Icon } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -32,7 +32,7 @@ export function SubmitButton({
       {pending ? (
         <>
           <>
-            <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
             Please wait...
           </>
         </>
