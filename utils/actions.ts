@@ -41,5 +41,16 @@ export const createProductAction = async (
   prevState: any,
   formData: FormData,
 ): Promise<{ message: string }> => {
-  return { message: "product created" };
+  try {
+    const name = formData.get("name") as string;
+    const company = formData.get("company") as string;
+    const price = formData.get("price") as string;
+    const image = formData.get("image") as File;
+    const description = formData.get("description") as string;
+    const featured = formData.get("featured") as string;
+
+    return { message: "product created" };
+  } catch (error) {
+    return { message: "there was an error..." };
+  }
 };
