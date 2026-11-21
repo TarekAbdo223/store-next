@@ -10,7 +10,8 @@ export const productSchema = z.object({
       message: "name must be less than 100 characters.",
     }),
   company: z.string(),
-  featured: z.coerce.boolean(),
+  // FormData omits unchecked checkboxes → missing key; default to false
+  featured: z.coerce.boolean().default(false),
   price: z.coerce.number().int().min(0, {
     message: "price must be a positive number.",
   }),

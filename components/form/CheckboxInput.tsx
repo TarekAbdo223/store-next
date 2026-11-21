@@ -15,7 +15,12 @@ export default function CheckboxInput({
 }: CheckboxInputProps) {
   return (
     <div className="flex items-center space-x-2">
-      <Checkbox id={name} name={name} defaultChecked={defaultChecked} />
+      <Checkbox
+        id={name}
+        name={name}
+        value="on"
+        defaultChecked={defaultChecked}
+      />
       <label
         htmlFor={name}
         className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize"

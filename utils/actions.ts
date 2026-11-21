@@ -59,10 +59,18 @@ export const createProductAction = async (
   const user = await getAuthUser();
 
   try {
-    const rawData = Object.fromEntries(formData);
     const file = formData.get("image") as File;
+    const rawData = {
+      name: formData.get("name"),
+      company: formData.get("company"),
+      price: formData.get("price"),
+      description: formData.get("description"),
+      // checkbox missing when unchecked — force a boolean
+      featured: formData.get("featured") === "on",
+    };
+
     const validatedFields = validateWithZodSchema(productSchema, rawData);
-    const validateFile = validateWithZodSchema(imageSchema, file);
+    validateWithZodSchema(imageSchema, { image: file });
 
     await db.product.create({
       data: {
